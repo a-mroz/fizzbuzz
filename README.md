@@ -7,4 +7,4 @@ To run acceptance tests (robot framework with Selenium2Library have to be instal
 pybot acceptance_tests
 ```
 
-Tests results will be stored in the acceptance_test directory.
+Tests results will be stored in the current terminal location.
