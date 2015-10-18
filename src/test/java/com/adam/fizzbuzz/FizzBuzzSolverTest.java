@@ -35,6 +35,16 @@ public class FizzBuzzSolverTest {
         solver.solve(1, 21, 10);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void rangeDividerMustBeGreaterThanLowerBound() throws Exception {
+        solver.solve(1, 1, 9);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rangeDividerMustBeLowerThanLowerBound() throws Exception {
+        solver.solve(1, 1, 101);
+    }
+
 
     @Test
     public void itWorks() throws Exception {
