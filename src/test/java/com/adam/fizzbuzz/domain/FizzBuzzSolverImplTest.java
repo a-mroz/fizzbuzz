@@ -1,6 +1,5 @@
 package com.adam.fizzbuzz.domain;
 
-import com.adam.fizzbuzz.domain.FizzBuzzSolverImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -57,6 +56,6 @@ public class FizzBuzzSolverImplTest {
         assertEquals("1 2 3 4 5 6 7 8 9 10 F", solver.solve(11, 20, 11));
         assertEquals("1 2 3 4 5 6 7 8 9 10 B", solver.solve(20, 11, 11));
         assertEquals("1 2 3 4 5 6 7 8 9 10 FB", solver.solve(11, 11, 11));
-        assertEquals("1 2 3 4 5 6 7 8 9 10 F 12 B", solver.solve(11,13, 13));
+        assertEquals("1 2 3 4 5 6 7 8 9 10 F 12 B", solver.solve(11, 13, 13));
     }
 }
