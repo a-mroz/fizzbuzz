@@ -12,8 +12,9 @@ public class FizzBuzzSolver {
         validateDivider(divider2);
         validateRange(range);
 
-        return "1 2 F 4 B F 7 8 F B";
+        return solveFizzBuzz(divider1, divider2, range);
     }
+
 
     private void validateRange(int range) {
         if (range < RANGE_LOWER_BOUND || range > RANGE_UPPER_BOUND)
@@ -24,4 +25,24 @@ public class FizzBuzzSolver {
         if (divider < DIVIDER_LOWER_BOUND || divider > DIVIDER_UPPER_BOUND)
             throw new IllegalArgumentException("Divider must be within range <%d, %d>");
     }
+
+    private String solveFizzBuzz(int divider1, int divider2, int range) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 1; i <= range; i++) {
+            if (i % divider1 == 0 && i % divider2 == 0) {
+                sb.append("FB ");
+            } else if (i % divider1 == 0) {
+                sb.append("F ");
+            } else if (i % divider2 == 0) {
+                sb.append("B ");
+            } else {
+                sb.append(String.format("%d ", i));
+            }
+        }
+
+        return sb.toString().trim();
+    }
+
+
 }
