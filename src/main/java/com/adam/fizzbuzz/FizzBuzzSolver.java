@@ -9,6 +9,9 @@ public class FizzBuzzSolver {
     public static final int DIVIDER_UPPER_BOUND = 20;
     public static final int RANGE_LOWER_BOUND = 10;
     public static final int RANGE_UPPER_BOUND = 100;
+    public static final String FIRST_DIVISOR_STR = "F";
+    public static final String SECOND_DIVISOR_STR = "B";
+    public static final String BOTH_DIVISORS_STR = FIRST_DIVISOR_STR + SECOND_DIVISOR_STR;
 
     public String solve(int divider1, int divider2, int range) {
         validateDivider(divider1);
@@ -35,11 +38,11 @@ public class FizzBuzzSolver {
 
     private String solveSingle(int current, int divider1, int divider2) {
         if (current % divider1 == 0 && current % divider2 == 0) {
-            return "FB";
+            return BOTH_DIVISORS_STR;
         } else if (current % divider1 == 0) {
-            return "F";
+            return FIRST_DIVISOR_STR;
         } else if (current % divider2 == 0) {
-            return "B";
+            return SECOND_DIVISOR_STR;
         }
 
         return String.valueOf(current);
