@@ -18,12 +18,12 @@ public class FizzBuzzSolver {
 
     private void validateRange(int range) {
         if (range < RANGE_LOWER_BOUND || range > RANGE_UPPER_BOUND)
-            throw new IllegalArgumentException("Range must be within range <%d, %d>");
+            throw new IllegalArgumentException(String.format("Range must be within range <%d, %d>", RANGE_LOWER_BOUND, RANGE_UPPER_BOUND));
     }
 
     private void validateDivider(int divider) {
         if (divider < DIVIDER_LOWER_BOUND || divider > DIVIDER_UPPER_BOUND)
-            throw new IllegalArgumentException("Divider must be within range <%d, %d>");
+            throw new IllegalArgumentException(String.format("Divider must be within range <%d, %d>", DIVIDER_LOWER_BOUND, DIVIDER_UPPER_BOUND));
     }
 
     private String solveFizzBuzz(int divider1, int divider2, int range) {
