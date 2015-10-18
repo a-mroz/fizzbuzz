@@ -1,17 +1,18 @@
-package com.adam.fizzbuzz;
+package com.adam.fizzbuzz.domain;
 
+import com.adam.fizzbuzz.domain.FizzBuzzSolverImpl;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.adam.fizzbuzz.FizzBuzzSolver.*;
+import static com.adam.fizzbuzz.domain.FizzBuzzSolverImpl.*;
 import static org.junit.Assert.assertEquals;
 
-public class FizzBuzzSolverTest {
-    private FizzBuzzSolver solver;
+public class FizzBuzzSolverImplTest {
+    private FizzBuzzSolverImpl solver;
 
     @Before
     public void setUp() throws Exception {
-        solver = new FizzBuzzSolver();
+        solver = new FizzBuzzSolverImpl();
     }
 
     @Test(expected = IllegalArgumentException.class)

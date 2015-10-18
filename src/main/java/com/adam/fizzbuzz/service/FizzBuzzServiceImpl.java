@@ -1,5 +1,6 @@
-package com.adam.fizzbuzz;
+package com.adam.fizzbuzz.service;
 
+import com.adam.fizzbuzz.domain.FizzBuzzSolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

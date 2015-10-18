@@ -1,6 +1,7 @@
-package com.adam.fizzbuzz;
+package com.adam.fizzbuzz.service;
 
 import com.adam.fizzbuzz.configuration.RootConfiguration;
+import com.adam.fizzbuzz.service.FizzBuzzServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

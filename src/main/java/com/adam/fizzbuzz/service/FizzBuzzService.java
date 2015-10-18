@@ -1,4 +1,4 @@
-package com.adam.fizzbuzz;
+package com.adam.fizzbuzz.service;
 
 public interface FizzBuzzService {
 

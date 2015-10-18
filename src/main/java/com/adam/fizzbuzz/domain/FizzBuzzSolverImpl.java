@@ -1,9 +1,9 @@
-package com.adam.fizzbuzz;
+package com.adam.fizzbuzz.domain;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class FizzBuzzSolver {
+public class FizzBuzzSolverImpl implements FizzBuzzSolver {
 
     public static final int DIVIDER_LOWER_BOUND = 1;
     public static final int DIVIDER_UPPER_BOUND = 20;
