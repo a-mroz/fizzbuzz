@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 @Service
 public class FizzBuzzServiceImpl implements FizzBuzzService {
+    public static final String ERROR_FORMAT_MSG = "Error: incorrect data format. Expecting three space separated integers in a line: divider1 divider2 range";
+    public static final String ERROR_OUT_OF_RANGE_MSG = "Error: values out of range. ";
+    public static final int REQUIRED_NUMBERS = 3;
 
     private final FizzBuzzSolver solver;
 
@@ -34,8 +37,8 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
                     sb.append(solver.solve(divisor1, divisor2, range));
                 } catch (NumberFormatException e) {
                     addErrorMessage(sb);
-                } catch(IllegalArgumentException e) {
-                    sb.append("Error: values out of range. ");
+                } catch (IllegalArgumentException e) {
+                    sb.append(ERROR_OUT_OF_RANGE_MSG);
                     sb.append(e.getMessage());
                 }
             }
@@ -47,10 +50,10 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
 
 
     private boolean hasEnoughData(String[] split) {
-        return split.length == 3;
+        return split.length == REQUIRED_NUMBERS;
     }
 
     private void addErrorMessage(StringBuilder sb) {
-        sb.append("Error: incorrect data format. Expecting three space separated integers in a line: divider1 divider2 range");
+        sb.append(ERROR_FORMAT_MSG);
     }
 }
