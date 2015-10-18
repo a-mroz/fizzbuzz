@@ -1,5 +1,8 @@
 package com.adam.fizzbuzz;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class FizzBuzzSolver {
 
     public static final int DIVIDER_LOWER_BOUND = 1;
@@ -26,22 +29,20 @@ public class FizzBuzzSolver {
             throw new IllegalArgumentException(String.format("Divider must be within range <%d, %d>", DIVIDER_LOWER_BOUND, DIVIDER_UPPER_BOUND));
     }
 
-    private String solveFizzBuzz(int divider1, int divider2, int range) {
-        StringBuilder sb = new StringBuilder();
+    private String solveFizzBuzz(final int divider1, final int divider2, int range) {
+        return IntStream.rangeClosed(1, range).mapToObj(i -> solveSingle(i, divider1, divider2)).collect(Collectors.joining(" "));
+    }
 
-        for (int i = 1; i <= range; i++) {
-            if (i % divider1 == 0 && i % divider2 == 0) {
-                sb.append("FB ");
-            } else if (i % divider1 == 0) {
-                sb.append("F ");
-            } else if (i % divider2 == 0) {
-                sb.append("B ");
-            } else {
-                sb.append(String.format("%d ", i));
-            }
+    private String solveSingle(int current, int divider1, int divider2) {
+        if (current % divider1 == 0 && current % divider2 == 0) {
+            return "FB";
+        } else if (current % divider1 == 0) {
+            return "F";
+        } else if (current % divider2 == 0) {
+            return "B";
         }
 
-        return sb.toString().trim();
+        return String.valueOf(current);
     }
 
 
