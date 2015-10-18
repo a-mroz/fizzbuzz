@@ -49,5 +49,13 @@ public class FizzBuzzSolverTest {
     public void itWorks() throws Exception {
         assertEquals("1 2 F 4 B F 7 8 F B", solver.solve(3, 5, 10));
         assertEquals("1 F 3 F 5 F B F 9 F 11 F 13 FB 15", solver.solve(2, 7, 15));
+
+        assertEquals("1 2 3 4 5 6 7 8 9 10 11", solver.solve(20, 20, 11));
+        assertEquals("FB FB FB FB FB FB FB FB FB FB", solver.solve(1, 1, 10));
+        assertEquals("F FB F FB F FB F FB F FB F", solver.solve(1, 2, 11));
+        assertEquals("1 2 3 4 5 6 7 8 9 10 F", solver.solve(11, 20, 11));
+        assertEquals("1 2 3 4 5 6 7 8 9 10 B", solver.solve(20, 11, 11));
+        assertEquals("1 2 3 4 5 6 7 8 9 10 FB", solver.solve(11, 11, 11));
+        assertEquals("1 2 3 4 5 6 7 8 9 10 F 12 B", solver.solve(11,13, 13));
     }
 }
