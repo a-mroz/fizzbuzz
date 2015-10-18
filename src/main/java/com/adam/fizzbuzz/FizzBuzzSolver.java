@@ -3,6 +3,7 @@ package com.adam.fizzbuzz;
 public class FizzBuzzSolver {
     public String solve(int divider1, int divider2, int range) {
         validate(divider1);
+        validate(divider2);
         return "1 2 F 4 B F 7 8 F B";
     }
 

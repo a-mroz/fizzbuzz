@@ -25,6 +25,17 @@ public class FizzBuzzSolverTest {
         solver.solve(21, 1, 10);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void secondDividerMustBeGreaterThanLowerBound() throws Exception {
+        solver.solve(1, -1, 10);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void secondDividerMustBeLowerThanLowerBound() throws Exception {
+        solver.solve(1, 21, 10);
+    }
+
+
     @Test
     public void itWorks() throws Exception {
         assertEquals("1 2 F 4 B F 7 8 F B", solver.solve(3, 5, 10));
