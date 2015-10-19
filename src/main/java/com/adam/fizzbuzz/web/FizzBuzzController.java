@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
@@ -29,7 +31,7 @@ public class FizzBuzzController {
 
     @RequestMapping(method=POST)
     public String calculate(@RequestParam("data") String inputData, Model model) {
-        String fizzBuzzResult = service.solveFizzBuzz(inputData);
+        List<String> fizzBuzzResult = service.solveFizzBuzz(inputData);
 
         model.addAttribute("fizzbuzz", fizzBuzzResult);
         return "index";

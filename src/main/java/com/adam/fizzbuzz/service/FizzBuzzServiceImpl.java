@@ -4,6 +4,8 @@ import com.adam.fizzbuzz.domain.FizzBuzzSolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 @Service
@@ -19,33 +21,33 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
         this.solver = solver;
     }
 
-    public String solveFizzBuzz(String input) {
+    @Override
+    public List<String> solveFizzBuzz(String input) {
         Scanner scanner = new Scanner(input);
-        StringBuilder sb = new StringBuilder();
+        List<String> results = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] split = line.split("\\s+");
 
             if (!hasEnoughData(split)) {
-                addErrorMessage(sb);
+                addErrorMessage(results);
             } else {
                 try {
                     int divisor1 = Integer.parseInt(split[0]);
                     int divisor2 = Integer.parseInt(split[1]);
                     int range = Integer.parseInt(split[2]);
-                    sb.append(solver.solve(divisor1, divisor2, range));
+                    results.add(solver.solve(divisor1, divisor2, range));
                 } catch (NumberFormatException e) {
-                    addErrorMessage(sb);
+                    addErrorMessage(results);
                 } catch (IllegalArgumentException e) {
-                    sb.append(ERROR_OUT_OF_RANGE_MSG);
-                    sb.append(e.getMessage());
+                    results.add(ERROR_OUT_OF_RANGE_MSG);
+                    results.add(e.getMessage());
                 }
             }
-            sb.append("\n");
         }
 
-        return sb.toString().trim();
+        return results;
     }
 
 
@@ -53,7 +55,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
         return split.length == REQUIRED_NUMBERS;
     }
 
-    private void addErrorMessage(StringBuilder sb) {
-        sb.append(ERROR_FORMAT_MSG);
+    private void addErrorMessage(List<String> results) {
+        results.add(ERROR_FORMAT_MSG);
     }
 }

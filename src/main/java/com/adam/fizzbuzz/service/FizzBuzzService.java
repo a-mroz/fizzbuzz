@@ -1,6 +1,8 @@
 package com.adam.fizzbuzz.service;
 
+import java.util.List;
+
 public interface FizzBuzzService {
 
-    String solveFizzBuzz(String input);
+    List<String> solveFizzBuzz(String input);
 }
