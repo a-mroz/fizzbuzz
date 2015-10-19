@@ -15,7 +15,9 @@
 
 
 <ul>
-    <li th:each="fizzbuzz : ${fizzbuzzes}" th:text="${fizzbuzz}"></li>
+    <li th:each="fizzbuzz : ${fizzbuzzes}">
+        <span class="input" th:text="${fizzbuzz.input}"></span> :
+        <span class="output" th:text="${fizzbuzz.output}"></span></li>
 </ul>
 
 

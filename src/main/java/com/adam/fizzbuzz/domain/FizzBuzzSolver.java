@@ -1,5 +1,7 @@
 package com.adam.fizzbuzz.domain;
 
+import com.adam.fizzbuzz.model.FizzBuzzResult;
+
 public interface FizzBuzzSolver {
-    String solve(int divider1, int divider2, int range);
+    FizzBuzzResult solve(int divider1, int divider2, int range);
 }

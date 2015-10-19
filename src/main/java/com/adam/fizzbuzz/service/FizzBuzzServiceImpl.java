@@ -1,6 +1,7 @@
 package com.adam.fizzbuzz.service;
 
 import com.adam.fizzbuzz.domain.FizzBuzzSolver;
+import com.adam.fizzbuzz.model.FizzBuzzResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +23,16 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
     }
 
     @Override
-    public List<String> solveFizzBuzz(String input) {
+    public List<FizzBuzzResult> solveFizzBuzz(String input) {
         Scanner scanner = new Scanner(input);
-        List<String> results = new ArrayList<>();
+        List<FizzBuzzResult> results = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] split = line.split("\\s+");
 
             if (!hasEnoughData(split)) {
-                addErrorMessage(results);
+                addErrorMessage(results, line);
             } else {
                 try {
                     int divisor1 = Integer.parseInt(split[0]);
@@ -39,10 +40,9 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
                     int range = Integer.parseInt(split[2]);
                     results.add(solver.solve(divisor1, divisor2, range));
                 } catch (NumberFormatException e) {
-                    addErrorMessage(results);
+                    addErrorMessage(results, line);
                 } catch (IllegalArgumentException e) {
-                    results.add(ERROR_OUT_OF_RANGE_MSG);
-                    results.add(e.getMessage());
+                    results.add(new FizzBuzzResult(line, ERROR_OUT_OF_RANGE_MSG + e.getMessage()));
                 }
             }
         }
@@ -55,7 +55,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
         return split.length == REQUIRED_NUMBERS;
     }
 
-    private void addErrorMessage(List<String> results) {
-        results.add(ERROR_FORMAT_MSG);
+    private void addErrorMessage(List<FizzBuzzResult> results, String inputLine) {
+        results.add(new FizzBuzzResult(inputLine, ERROR_FORMAT_MSG));
     }
 }

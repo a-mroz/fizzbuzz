@@ -1,5 +1,7 @@
 package com.adam.fizzbuzz.domain;
 
+import com.adam.fizzbuzz.model.FizzBuzzResult;
+
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,12 +15,13 @@ public class FizzBuzzSolverImpl implements FizzBuzzSolver {
     public static final String SECOND_DIVISOR_STR = "B";
     public static final String BOTH_DIVISORS_STR = FIRST_DIVISOR_STR + SECOND_DIVISOR_STR;
 
-    public String solve(int divider1, int divider2, int range) {
+    @Override
+    public FizzBuzzResult solve(int divider1, int divider2, int range) {
         validateDivider(divider1);
         validateDivider(divider2);
         validateRange(range);
 
-        return solveFizzBuzz(divider1, divider2, range);
+        return new FizzBuzzResult(String.format("%d %d %d", divider1, divider2, range), solveFizzBuzz(divider1, divider2, range));
     }
 
 

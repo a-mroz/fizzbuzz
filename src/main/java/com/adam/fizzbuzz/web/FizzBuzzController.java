@@ -1,5 +1,6 @@
 package com.adam.fizzbuzz.web;
 
+import com.adam.fizzbuzz.model.FizzBuzzResult;
 import com.adam.fizzbuzz.service.FizzBuzzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class FizzBuzzController {
 
     @RequestMapping(method=POST)
     public String calculate(@RequestParam("data") String inputData, Model model) {
-        List<String> fizzBuzzResult = service.solveFizzBuzz(inputData);
+        List<FizzBuzzResult> fizzBuzzResult = service.solveFizzBuzz(inputData);
 
         model.addAttribute("fizzbuzzes", fizzBuzzResult);
         return "index";
