@@ -33,7 +33,7 @@ public class FizzBuzzController {
     public String calculate(@RequestParam("data") String inputData, Model model) {
         List<String> fizzBuzzResult = service.solveFizzBuzz(inputData);
 
-        model.addAttribute("fizzbuzz", fizzBuzzResult);
+        model.addAttribute("fizzbuzzes", fizzBuzzResult);
         return "index";
     }
 

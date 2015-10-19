@@ -13,7 +13,11 @@
     </form>
 </div>
 
-<div th:text="${fizzbuzz}"></div>
+
+<ul>
+    <li th:each="fizzbuzz : ${fizzbuzzes}" th:text="${fizzbuzz}"></li>
+</ul>
+
 
 </body>
 
