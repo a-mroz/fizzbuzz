@@ -4,6 +4,9 @@ import com.adam.fizzbuzz.configuration.RootConfiguration;
 import com.adam.fizzbuzz.configuration.WebConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -22,6 +25,10 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         return new String[]{"/"};
     }
 
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
 
-
+        servletContext.setInitParameter("defaultHtmlEscape", Boolean.TRUE.toString());
+    }
 }
