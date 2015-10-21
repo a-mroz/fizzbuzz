@@ -63,4 +63,5 @@ dependencies {
 
 war {
     baseName = 'fizzbuzz'
+    archiveName = baseName + '.war'
 }
