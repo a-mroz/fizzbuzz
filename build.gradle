@@ -1,3 +1,5 @@
+// Integration tests configuration based on http://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-integration-testing/
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'war'
@@ -10,6 +12,41 @@ repositories {
     mavenCentral()
 }
 
+// Adding integration tests - sources and resources dir and dependencies (main + tests)
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration-test/java')
+        }
+        resources.srcDir file('src/integration-test/resources')
+    }
+}
+// Dependency configurations
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+// Adding task for integration tests
+task integrationTest(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    outputs.upToDateWhen { false } // Run always
+}
+
+// Run check after integration tests - build fails if tests fail
+check.dependsOn integrationTest
+
+// Run integration tests after unit tests
+integrationTest.mustRunAfter test
+
+// Set integration tests report path
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+}
+
 dependencies {
     compile group: 'org.springframework', name: 'spring-context', version: '4.2.2.RELEASE'
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.2.2.RELEASE'
@@ -20,6 +57,8 @@ dependencies {
     testCompile group: 'org.springframework', name: 'spring-test', version: '4.2.2.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+
+    // Now we can add dependencies also to integrationTestCompile (or runtime)
 }
 
 war {
