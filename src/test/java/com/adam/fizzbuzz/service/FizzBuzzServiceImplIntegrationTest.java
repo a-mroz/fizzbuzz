@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RootConfiguration.class)
-public class FizzBuzzServiceImplTest {
+public class FizzBuzzServiceImplIntegrationTest {
 
     @Autowired
     private FizzBuzzServiceImpl service;
