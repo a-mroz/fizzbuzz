@@ -18,10 +18,10 @@ Application Page Should Be Open
     Title Should Be     ${TITLE}
 
 Input Data      [Arguments]    ${triple}
-    Input Text  input_data  triple
+    Input Text  input_data  ${triple}
 
 Submit Data
     Click Button    submit_button
 
-Check Result    [Arguments] ${expected}
-    Element Should Contain    fizz_buzz_result    ${expected}
+Check Result    [Arguments]    ${expected}
+    Element Should Contain    fizz_buzz_results    ${expected}

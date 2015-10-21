@@ -9,14 +9,14 @@
 <div>
     <form action="#" method="post">
         <fieldset>
-            <textarea placeholder="Enter data" name="data" required="required"></textarea>
-            <input type="submit" value="Submit"/>
+            <textarea id="input_data" placeholder="Enter data" name="data" required="required"></textarea>
+            <input id="submit_button" type="submit" value="Submit"/>
         </fieldset>
     </form>
 </div>
 
 
-<ul>
+<ul id="fizz_buzz_results">
     <li th:each="fizzbuzz : ${fizzbuzzes}">
         <span class="input" th:text="${fizzbuzz.input}"></span> :
         <span class="output" th:text="${fizzbuzz.output}"></span></li>
