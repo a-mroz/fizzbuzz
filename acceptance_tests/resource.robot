@@ -23,5 +23,5 @@ Input Data      [Arguments]    ${triple}
 Submit Data
     Click Button    submit_button
 
-Check Result    [Arguments]    ${expected}
-    Element Should Contain    fizz_buzz_results    ${expected}
+Check Result    [Arguments]    ${expected_in}    ${expected_out}
+    Element Should Contain    fizz_buzz_results    ${expected_in} : ${expected_out}
