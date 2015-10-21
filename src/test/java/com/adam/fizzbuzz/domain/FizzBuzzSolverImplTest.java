@@ -15,32 +15,32 @@ public class FizzBuzzSolverImplTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void firstDividerMustBeGreaterThanLowerBound() throws Exception {
+    public void whenFirstDividerLessThanLowerBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND - 1, DIVIDER_LOWER_BOUND, RANGE_LOWER_BOUND);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void firstDividerMustBeLessThanUpperBound() throws Exception {
+    public void whenFirstDividerBiggerThanUpperBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_UPPER_BOUND + 1, DIVIDER_LOWER_BOUND, RANGE_LOWER_BOUND);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void secondDividerMustBeGreaterThanLowerBound() throws Exception {
+    public void whenSecondDividerLessThanLowerBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND, DIVIDER_LOWER_BOUND - 1, RANGE_LOWER_BOUND);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void secondDividerMustBeLessThanLowerBound() throws Exception {
+    public void whenSecondDividerBiggerThanUpperBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND, DIVIDER_UPPER_BOUND + 1, RANGE_LOWER_BOUND);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void rangeDividerMustBeGreaterThanLowerBound() throws Exception {
+    public void whenRangeLessThanLowerBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND, DIVIDER_LOWER_BOUND, RANGE_LOWER_BOUND - 1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void rangeDividerMustBeLowerThanLowerBound() throws Exception {
+    public void whenRangeBiggerThanUpperBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND, DIVIDER_LOWER_BOUND, RANGE_UPPER_BOUND + 1);
     }
 
