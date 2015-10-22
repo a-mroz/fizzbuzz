@@ -44,7 +44,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
                 } catch (NumberFormatException e) {
                     addErrorMessage(results, line);
                 } catch (DividerArgumentOutOfBoundsException | RangeArgumentOutOfBoundsException e) {
-                    results.add(new FizzBuzzResult(line, ERROR_OUT_OF_RANGE_MSG + e.getMessage()));
+                    results.add(new FizzBuzzResult(line, ERROR_OUT_OF_RANGE_MSG));
                 }
             }
         }
