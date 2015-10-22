@@ -23,7 +23,7 @@
 <body>
 <div class="container">
     <div class="jumbotron">
-        <h1 class="text-center">Welcome to Fizz Buzz!</h1>
+        <h1 class="text-center" th:text="#{welcome_msg}">Welcome to Fizz Buzz!</h1>
     </div>
 
 
@@ -31,24 +31,29 @@
         <form role="form" class="form-horizontal" action="#" method="post">
             <fieldset>
                 <div class="form-group">
-                    <label for="input_data" class="col-md-3">Provide data to calculate fizz buzz:</label>
-                    <textarea id="input_data" placeholder="Enter data" name="data" required="required"
+                    <label for="input_data" class="col-md-3" th:text="#{provide_data}">Provide data to calculate fizz
+                        buzz:</label>
+                    <textarea id="input_data" placeholder="Enter data" th:placeholder="#{enter_data}" name="data"
+                              required="required"
                               class="col-md-6"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <input id="submit_button" type="submit" value="Submit" class="btn col-md-3 col-md-offset-3"/>
+                    <input id="submit_button" type="submit" value="Submit" th:value="#{submit}"
+                           class="btn col-md-3 col-md-offset-3"/>
                 </div>
             </fieldset>
         </form>
     </div>
 
-
-    <ul id="fizz_buzz_results">
-        <li th:each="fizzbuzz : ${fizzbuzzes}">
-            <span class="input" th:text="${fizzbuzz.input}"></span> :
-            <span class="output" th:text="${fizzbuzz.output}"></span></li>
-    </ul>
+    <div class="row">
+        <label for="fizz_buzz_results" class="col-md-12" th:text="${!#lists.isEmpty(fizzbuzzes)} ? #{results}"></label>
+        <ul id="fizz_buzz_results" class="col-md-12">
+            <li th:each="fizzbuzz : ${fizzbuzzes}">
+                <span class="input" th:text="${fizzbuzz.input}"></span> :
+                <span class="output" th:text="${fizzbuzz.output}"></span></li>
+        </ul>
+    </div>
 </div>
 
 </body>
