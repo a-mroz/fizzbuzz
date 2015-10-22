@@ -3,25 +3,53 @@
 <head>
     <title>FizzBuzz</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer="defer"></script>
+
+    <!-- Bootstrap compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+
+    <!-- Bootstrap optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+
+    <!-- Bootstrap compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" defer="defer"></script>
+
+    <link rel="stylesheet" href="styles.css"/>
+
 </head>
 
 <body>
-<div>
-    <form action="#" method="post">
-        <fieldset>
-            <textarea id="input_data" placeholder="Enter data" name="data" required="required"></textarea>
-            <input id="submit_button" type="submit" value="Submit"/>
-        </fieldset>
-    </form>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="text-center">Welcome to Fizz Buzz!</h1>
+    </div>
+
+
+    <div>
+        <form role="form" class="form-horizontal" action="#" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="input_data" class="col-md-3">Provide data to calculate fizz buzz:</label>
+                    <textarea id="input_data" placeholder="Enter data" name="data" required="required"
+                              class="col-md-6"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input id="submit_button" type="submit" value="Submit" class="btn col-md-3 col-md-offset-3"/>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+    <ul id="fizz_buzz_results">
+        <li th:each="fizzbuzz : ${fizzbuzzes}">
+            <span class="input" th:text="${fizzbuzz.input}"></span> :
+            <span class="output" th:text="${fizzbuzz.output}"></span></li>
+    </ul>
 </div>
-
-
-<ul id="fizz_buzz_results">
-    <li th:each="fizzbuzz : ${fizzbuzzes}">
-        <span class="input" th:text="${fizzbuzz.input}"></span> :
-        <span class="output" th:text="${fizzbuzz.output}"></span></li>
-</ul>
-
 
 </body>
 

@@ -1,0 +1,12 @@
+
+li .input {
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: square;
+}
+
+.fizzbuzz-error {
+    color:red;
+}
