@@ -1,9 +1,11 @@
 package com.adam.fizzbuzz.configuration;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -33,8 +35,9 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public SpringTemplateEngine templateEngine(TemplateResolver templateResolver) {
+    public SpringTemplateEngine templateEngine(TemplateResolver templateResolver, MessageSource messageSource) {
         SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.setMessageSource(messageSource);
         engine.setTemplateResolver(templateResolver);
         return engine;
     }
@@ -46,6 +49,14 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
         return templateResolver;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("/WEB-INF/locale/messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 
 }
