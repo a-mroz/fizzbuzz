@@ -2,6 +2,7 @@ package com.adam.fizzbuzz.service;
 
 import com.adam.fizzbuzz.configuration.RootConfiguration;
 import com.adam.fizzbuzz.model.FizzBuzzResult;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +69,7 @@ public class FizzBuzzServiceImplIntegrationTest {
 
     @Test
     public void displaysErrorWhenValuesOutOfRangeArePassed() throws Exception {
-        assertTrue(service.solveFizzBuzz("-1 1 2").get(0).getOutput().startsWith(FizzBuzzServiceImpl.ERROR_OUT_OF_RANGE_MSG));
-        assertTrue(service.solveFizzBuzz("1 1 0").get(0).getOutput().startsWith(FizzBuzzServiceImpl.ERROR_OUT_OF_RANGE_MSG));
+        assertTrue(service.solveFizzBuzz("-1 1 2").get(0).getOutput().startsWith(FizzBuzzServiceImpl.ERROR_DIVIDER_OUT_OF_BOUNDS_MSG));
+        assertTrue(service.solveFizzBuzz("1 1 0").get(0).getOutput().startsWith(FizzBuzzServiceImpl.ERROR_RANGE_OUT_OF_BOUNDS_MSG));
     }
 }

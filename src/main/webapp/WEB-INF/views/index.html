@@ -51,7 +51,8 @@
         <ul id="fizz_buzz_results" class="col-md-12">
             <li th:each="fizzbuzz : ${fizzbuzzes}">
                 <span class="input" th:text="${fizzbuzz.input}"></span> :
-                <span class="output" th:text="${fizzbuzz.output}"></span></li>
+                <span class="output" th:text="${fizzbuzz.errorResult} ? #{__${fizzbuzz.output}__} : ${fizzbuzz.output}"
+                      th:class="${fizzbuzz.errorResult} ? 'fizzbuzz-error'"></span></li>
         </ul>
     </div>
 </div>

@@ -4,6 +4,7 @@ import com.adam.fizzbuzz.domain.FizzBuzzSolver;
 import com.adam.fizzbuzz.domain.exceptions.RangeArgumentOutOfBoundsException;
 import com.adam.fizzbuzz.model.FizzBuzzResult;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,7 +13,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static com.adam.fizzbuzz.service.FizzBuzzServiceImpl.ERROR_FORMAT_MSG;
-import static com.adam.fizzbuzz.service.FizzBuzzServiceImpl.ERROR_OUT_OF_RANGE_MSG;
+import static com.adam.fizzbuzz.service.FizzBuzzServiceImpl.ERROR_RANGE_OUT_OF_BOUNDS_MSG;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -74,14 +75,14 @@ public class FizzBuzzServiceImplTest {
         FizzBuzzResult result = service.solveFizzBuzz(outOfRangeInput).get(0);
         String output = result.getOutput();
 
-        assertTrue(output.startsWith(ERROR_OUT_OF_RANGE_MSG));
+        assertTrue(output.startsWith(ERROR_RANGE_OUT_OF_BOUNDS_MSG));
     }
 
     @Test
     public void whenCorrectArgument_containsResult() throws Exception {
         String correctInput = "2 5 10";
         String correctOutput = "correct output";
-        when(solver.solve(2, 5, 10)).thenReturn(new FizzBuzzResult(correctInput, correctOutput));
+        when(solver.solve(2, 5, 10)).thenReturn(FizzBuzzResult.correct(correctInput, correctOutput));
 
         FizzBuzzResult result = service.solveFizzBuzz(correctInput).get(0);
 

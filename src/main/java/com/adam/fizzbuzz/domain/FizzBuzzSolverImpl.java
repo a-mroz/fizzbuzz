@@ -23,7 +23,7 @@ public class FizzBuzzSolverImpl implements FizzBuzzSolver {
         validateDivider(divider2);
         validateRange(range);
 
-        return new FizzBuzzResult(String.format("%d %d %d", divider1, divider2, range), solveFizzBuzz(divider1, divider2, range));
+        return FizzBuzzResult.correct(String.format("%d %d %d", divider1, divider2, range), solveFizzBuzz(divider1, divider2, range));
     }
 
 

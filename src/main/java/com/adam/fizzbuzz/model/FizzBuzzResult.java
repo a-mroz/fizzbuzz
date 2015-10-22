@@ -3,11 +3,22 @@ package com.adam.fizzbuzz.model;
 public class FizzBuzzResult {
     private final String input;
     private final String output;
+    private final boolean errorResult;
 
 
-    public FizzBuzzResult(String input, String output) {
+    public static FizzBuzzResult correct(String input, String output) {
+        return new FizzBuzzResult(input, output, false);
+    }
+
+
+    public static FizzBuzzResult incorrect(String input, String output) {
+        return new FizzBuzzResult(input, output, true);
+    }
+
+    private FizzBuzzResult(String input, String output, boolean errorResult) {
         this.input = input;
         this.output = output;
+        this.errorResult = errorResult;
     }
 
     public String getInput() {
@@ -18,6 +29,9 @@ public class FizzBuzzResult {
         return output;
     }
 
+    public boolean isErrorResult() {
+        return errorResult;
+    }
 
     @Override
     public String toString() {
@@ -34,15 +48,17 @@ public class FizzBuzzResult {
 
         FizzBuzzResult that = (FizzBuzzResult) o;
 
-        if (!input.equals(that.input)) return false;
-        return output.equals(that.output);
+        if (errorResult != that.errorResult) return false;
+        if (input != null ? !input.equals(that.input) : that.input != null) return false;
+        return !(output != null ? !output.equals(that.output) : that.output != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = input.hashCode();
-        result = 31 * result + output.hashCode();
+        int result = input != null ? input.hashCode() : 0;
+        result = 31 * result + (output != null ? output.hashCode() : 0);
+        result = 31 * result + (errorResult ? 1 : 0);
         return result;
     }
 }

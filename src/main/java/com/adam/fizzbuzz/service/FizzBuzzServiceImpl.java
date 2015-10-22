@@ -13,8 +13,9 @@ import java.util.Scanner;
 
 @Service
 public class FizzBuzzServiceImpl implements FizzBuzzService {
-    public static final String ERROR_FORMAT_MSG = "Error: incorrect data format. Expecting three space separated integers in a line: divider1 divider2 range";
-    public static final String ERROR_OUT_OF_RANGE_MSG = "Error: values out of range. ";
+    public static final String ERROR_FORMAT_MSG = "errorFormatMessage";
+    public static final String ERROR_RANGE_OUT_OF_BOUNDS_MSG = "errorRangeOutOfBoundsMessage";
+    public static final String ERROR_DIVIDER_OUT_OF_BOUNDS_MSG = "errorDividerOutOfBoundsMessage";
     public static final int REQUIRED_NUMBERS = 3;
 
     private final FizzBuzzSolver solver;
@@ -34,7 +35,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
             String[] split = line.split("\\s+");
 
             if (!hasEnoughData(split)) {
-                addErrorMessage(results, line);
+                addFormatErrorMessage(results, line);
             } else {
                 try {
                     int divisor1 = Integer.parseInt(split[0]);
@@ -42,9 +43,11 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
                     int range = Integer.parseInt(split[2]);
                     results.add(solver.solve(divisor1, divisor2, range));
                 } catch (NumberFormatException e) {
-                    addErrorMessage(results, line);
-                } catch (DividerArgumentOutOfBoundsException | RangeArgumentOutOfBoundsException e) {
-                    results.add(new FizzBuzzResult(line, ERROR_OUT_OF_RANGE_MSG));
+                    addFormatErrorMessage(results, line);
+                } catch (DividerArgumentOutOfBoundsException e) {
+                    addErrorDividerOutOfBoundsMessage(results, line);
+                } catch (RangeArgumentOutOfBoundsException e) {
+                    addErrorRangeOutOfBoundsMessage(results, line);
                 }
             }
         }
@@ -53,11 +56,21 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
     }
 
 
+
     private boolean hasEnoughData(String[] split) {
         return split.length == REQUIRED_NUMBERS;
     }
 
-    private void addErrorMessage(List<FizzBuzzResult> results, String inputLine) {
-        results.add(new FizzBuzzResult(inputLine, ERROR_FORMAT_MSG));
+    private void addFormatErrorMessage(List<FizzBuzzResult> results, String inputLine) {
+        results.add(FizzBuzzResult.incorrect(inputLine, ERROR_FORMAT_MSG));
     }
+
+    private void addErrorDividerOutOfBoundsMessage(List<FizzBuzzResult> results, String inputLine) {
+        results.add(FizzBuzzResult.incorrect(inputLine, ERROR_DIVIDER_OUT_OF_BOUNDS_MSG));
+    }
+
+    private void addErrorRangeOutOfBoundsMessage(List<FizzBuzzResult> results, String inputLine) {
+        results.add(FizzBuzzResult.incorrect(inputLine, ERROR_RANGE_OUT_OF_BOUNDS_MSG));
+    }
+
 }
