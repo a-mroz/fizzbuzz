@@ -1,5 +1,7 @@
 package com.adam.fizzbuzz.domain;
 
+import com.adam.fizzbuzz.domain.exceptions.DividerArgumentOutOfBoundsException;
+import com.adam.fizzbuzz.domain.exceptions.RangeArgumentOutOfBoundsException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,32 +16,32 @@ public class FizzBuzzSolverImplTest {
         solver = new FizzBuzzSolverImpl();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = DividerArgumentOutOfBoundsException.class)
     public void whenFirstDividerLessThanLowerBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND - 1, DIVIDER_LOWER_BOUND, RANGE_LOWER_BOUND);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = DividerArgumentOutOfBoundsException.class)
     public void whenFirstDividerBiggerThanUpperBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_UPPER_BOUND + 1, DIVIDER_LOWER_BOUND, RANGE_LOWER_BOUND);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = DividerArgumentOutOfBoundsException.class)
     public void whenSecondDividerLessThanLowerBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND, DIVIDER_LOWER_BOUND - 1, RANGE_LOWER_BOUND);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = DividerArgumentOutOfBoundsException.class)
     public void whenSecondDividerBiggerThanUpperBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND, DIVIDER_UPPER_BOUND + 1, RANGE_LOWER_BOUND);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = RangeArgumentOutOfBoundsException.class)
     public void whenRangeLessThanLowerBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND, DIVIDER_LOWER_BOUND, RANGE_LOWER_BOUND - 1);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = RangeArgumentOutOfBoundsException.class)
     public void whenRangeBiggerThanUpperBound_exceptionIsThrown() throws Exception {
         solver.solve(DIVIDER_LOWER_BOUND, DIVIDER_LOWER_BOUND, RANGE_UPPER_BOUND + 1);
     }

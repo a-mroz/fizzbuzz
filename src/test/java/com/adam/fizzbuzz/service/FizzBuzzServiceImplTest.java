@@ -1,6 +1,7 @@
 package com.adam.fizzbuzz.service;
 
 import com.adam.fizzbuzz.domain.FizzBuzzSolver;
+import com.adam.fizzbuzz.domain.exceptions.RangeArgumentOutOfBoundsException;
 import com.adam.fizzbuzz.model.FizzBuzzResult;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,14 +69,12 @@ public class FizzBuzzServiceImplTest {
     @Test
     public void whenIllegalArguments_displaysError() throws Exception {
         String outOfRangeInput = "1 2 3";
-        String errorMsg = "Error Message";
-        when(solver.solve(1, 2, 3)).thenThrow(new IllegalArgumentException(errorMsg));
+        when(solver.solve(1, 2, 3)).thenThrow(new RangeArgumentOutOfBoundsException(10, 100));
 
         FizzBuzzResult result = service.solveFizzBuzz(outOfRangeInput).get(0);
         String output = result.getOutput();
 
         assertTrue(output.startsWith(ERROR_OUT_OF_RANGE_MSG));
-        assertTrue(output.endsWith(errorMsg));
     }
 
     @Test

@@ -1,5 +1,7 @@
 package com.adam.fizzbuzz.domain;
 
+import com.adam.fizzbuzz.domain.exceptions.DividerArgumentOutOfBoundsException;
+import com.adam.fizzbuzz.domain.exceptions.RangeArgumentOutOfBoundsException;
 import com.adam.fizzbuzz.model.FizzBuzzResult;
 
 import java.util.stream.Collectors;
@@ -27,12 +29,12 @@ public class FizzBuzzSolverImpl implements FizzBuzzSolver {
 
     private void validateRange(int range) {
         if (range < RANGE_LOWER_BOUND || range > RANGE_UPPER_BOUND)
-            throw new IllegalArgumentException(String.format("Range must be within range <%d, %d>", RANGE_LOWER_BOUND, RANGE_UPPER_BOUND));
+            throw new RangeArgumentOutOfBoundsException(RANGE_LOWER_BOUND, RANGE_UPPER_BOUND);
     }
 
     private void validateDivider(int divider) {
         if (divider < DIVIDER_LOWER_BOUND || divider > DIVIDER_UPPER_BOUND)
-            throw new IllegalArgumentException(String.format("Divider must be within range <%d, %d>", DIVIDER_LOWER_BOUND, DIVIDER_UPPER_BOUND));
+            throw new DividerArgumentOutOfBoundsException(DIVIDER_LOWER_BOUND, DIVIDER_UPPER_BOUND);
     }
 
     private String solveFizzBuzz(final int divider1, final int divider2, int range) {

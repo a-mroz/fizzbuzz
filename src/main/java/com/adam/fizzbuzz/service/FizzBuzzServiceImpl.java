@@ -1,6 +1,8 @@
 package com.adam.fizzbuzz.service;
 
 import com.adam.fizzbuzz.domain.FizzBuzzSolver;
+import com.adam.fizzbuzz.domain.exceptions.DividerArgumentOutOfBoundsException;
+import com.adam.fizzbuzz.domain.exceptions.RangeArgumentOutOfBoundsException;
 import com.adam.fizzbuzz.model.FizzBuzzResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +43,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
                     results.add(solver.solve(divisor1, divisor2, range));
                 } catch (NumberFormatException e) {
                     addErrorMessage(results, line);
-                } catch (IllegalArgumentException e) {
+                } catch (DividerArgumentOutOfBoundsException | RangeArgumentOutOfBoundsException e) {
                     results.add(new FizzBuzzResult(line, ERROR_OUT_OF_RANGE_MSG + e.getMessage()));
                 }
             }
