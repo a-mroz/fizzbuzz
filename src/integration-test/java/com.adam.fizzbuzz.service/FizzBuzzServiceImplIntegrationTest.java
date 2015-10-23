@@ -73,4 +73,12 @@ public class FizzBuzzServiceImplIntegrationTest {
         assertTrue(service.solveFizzBuzz("-1 1 2").get(0).getOutput().startsWith(FizzBuzzServiceImpl.ERROR_DIVIDER_OUT_OF_BOUNDS_MSG));
         assertTrue(service.solveFizzBuzz("1 1 0").get(0).getOutput().startsWith(FizzBuzzServiceImpl.ERROR_RANGE_OUT_OF_BOUNDS_MSG));
     }
+
+    @Test
+    public void isErrorPropertyIsSetCorrectly() throws Exception {
+        List<FizzBuzzResult> results = service.solveFizzBuzz("3 5 10\n2 7");
+        assertFalse(results.get(0).isErrorResult());
+        assertTrue(results.get(1).isErrorResult());
+    }
+    
 }
